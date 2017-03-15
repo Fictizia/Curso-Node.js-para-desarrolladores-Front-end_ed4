@@ -32,7 +32,7 @@ Como metodología de trabajo durante el curso, los alumnos desarrollarán como p
 
 Sobre el Curso
 =================
-* Horario: Lunes, Miércoles y Viernes de 19:00 a 22:00
+* Horario: Sábados de 10:00 a 15:00
 * Fechas: 18/03/2017 - 06/05/2017
 * Festivos: 
   * 25/03/2017
