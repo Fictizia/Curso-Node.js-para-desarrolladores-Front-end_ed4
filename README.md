@@ -44,7 +44,7 @@ Teoría y Recursos
 
 Teoría | Recursos
 ------------ | -------------
-Clase 1	| Clase 1
+[Clase 1](teoria/clase1.md) | [Clase 1](recursos/clase1.md)
 Clase 2 | Clase 2
 Clase 3 | Clase 3
 Clase 4 | Clase 4
