@@ -1,5 +1,25 @@
 # Clase 2
 
+### Open Source Weekends (OSWeekends)
+
+![company](https://a248.e.akamai.net/secure.meetupstatic.com/photos/event/b/d/3/a/highres_456588442.jpeg)
+
+**Lugar**
+- [Campus Madrid](https://www.campus.co/madrid/es)
+
+**Fecha**
+- Sábado, 8 de Abril. 10:30-14:30
+
+**Contenido**
+- Charla de Flexbox con [Ángel Corral Arias (@ancoar)](https://twitter.com/ancoar)
+- Charla de Arduino [Fran Acién (@amil101)](https://twitter.com/amil101)
+- Visionado de dos charlas sobre Arduino
+
+**Apuntate**
+- [Meetup](https://www.meetup.com/es-ES/Open-Source-Weekends/events/238442295/)
+- [Slack](https://invitations-osweekends.herokuapp.com/)
+
+
 ### Trabajando con APIs
 
 *CRUD*
@@ -1609,7 +1629,8 @@ Nota: http://openweathermap.org te será de gran ayuda, busca la solución al er
 ```
 
 
-**4 -** Crea una web que nos permita ver los detalles almacenados en IMBD de una pelicula partiendo únicamente del título
+**4 -** Crea una web que nos permita ver los detalles almacenados en IMBD de una pelicula partiendo únicamente del título.
+
 Recursos:
 - [OMDb API - The Open Movie Database](http://omdbapi.com/)
 
