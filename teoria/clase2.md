@@ -1610,7 +1610,29 @@ npm install -g n
 **1 -** Sacar en el html la respuesta de [OMDB](http://omdbapi.com/) para la pelicula Hackers
 
 ```javascript
-  // Tu solución
+	 function peticionAjax (movieName) {
+	  var xmlHttp = new XMLHttpRequest(),
+	                cURL = 'http://www.omdbapi.com/?t='+movieName+'&y=&plot=short&r=json';
+	
+	            xmlHttp.onreadystatechange = function () {
+	
+	                if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+	                    var datos = (JSON.parse(xmlHttp.responseText));
+	                    var contenido = "";
+	                    contenido += "<h1>"+datos.Title+"</h1>"
+	                    contenido += "<p>"+datos.Plot+"</p>"
+	                    document.body.innerHTML = contenido;
+	                } else if (xmlHttp.readyState === 4 && xmlHttp.status === 404) {
+	                    console.error("ERROR! 404");
+	                    console.info(JSON.parse(xmlHttp.responseText));
+	                }
+	            };
+	
+	            xmlHttp.open( "GET", cURL, true );
+	            xmlHttp.send();
+	}
+	
+	peticionAjax("Hackers");
 ```
 
 
