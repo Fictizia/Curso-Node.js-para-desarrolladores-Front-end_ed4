@@ -1702,9 +1702,7 @@ Nota: http://openweathermap.org te será de gran ayuda, busca la solución al er
 Recursos:
 - [OMDb API - The Open Movie Database](http://omdbapi.com/)
 
-```javascript
-  // Tu solución
-```
+- [Solución](http://codepen.io/ulisesgascon/pen/LNJwwo)
 
 
 **5 -** Crea las rutas básicas para tener una página web clásica (¿Quienes somos? | ¿Donde Estamos? | ¿Que hacemos? | Contacto... etc...)
