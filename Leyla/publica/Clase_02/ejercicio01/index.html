@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejercicio 01</title>
+
+	<style type="text/css">
+		* { margin: 0; padding: 0; }
+	</style>
+
+</head>
+
+<body>
+
+	<main role="main" id="contenedor">
+		
+	</main>
+
+	<!--Template de la ficha-->
+	<script id="plantilla" type="text/x-handlebars-template">
+		<div class="ficha">
+			<h1>{{Title}}</h1>
+			<h2>Año: {{Year}}</h2>
+			<h3>Director: {{Director}}</h3>
+			<h4>Actores: {{Actors}}</h4>
+			{{{pintarPoster}}}		
+		</div>
+	</script>
+
+	<!--HANDLEBARS JS-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script>window.Handlebars || document.write('<script src="js/handlebars-v4.0.5.js">\x3C/script>');</script>
+
+	<script type="text/javascript">
+
+		/*------------------------------------------------------------------*/
+		/*1 - Sacar en el html la respuesta de OMDB para la pelicula Hackers*/
+		/*------------------------------------------------------------------*/
+		var url = "http://www.omdbapi.com/?t=Hackers";
+
+		/*Pintar información de la película*/
+		function pintarPelicula (err, data){
+			//console.log( err ? "Error:" + err : "Datos:" + data.Year);
+
+			Handlebars.registerHelper('pintarPoster', function() {
+				return "<img src='" + this.Poster + "' />";
+			});
+
+			// Grab the template script
+			var theTemplateScript = document.getElementById('plantilla').innerHTML;
+
+			// Compile the template
+			var theTemplate = Handlebars.compile(theTemplateScript);
+
+			// Pass our data to the template
+			var theCompiledHtml = theTemplate(data);
+
+			document.getElementById('contenedor').innerHTML = theCompiledHtml;
+		}
+
+		/*Petición AJAX*/
+		function peticionAjax(url, callback) {
+		    var xmlHttp = new XMLHttpRequest();
+
+		    xmlHttp.onreadystatechange = function() {
+		    	if(xmlHttp.readyState === 4){
+		    		var error, data;        		
+		    		
+		    		if(xmlHttp.status === 200){
+		    			data = JSON.parse(xmlHttp.responseText)
+		    		} else{
+		    			error = JSON.parse(xmlHttp.responseText)
+		    		} 
+		    		callback(error, data)
+		    	}
+		    };
+		    xmlHttp.open("GET", url, true);
+		    xmlHttp.send();
+		}
+
+		peticionAjax(url, pintarPelicula);
+
+		
+
+	</script>
+	
+</body>
+
+</html>

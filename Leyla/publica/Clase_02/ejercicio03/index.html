@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ejercicio 03</title>
+</head>
+
+<body>
+
+<script type="text/javascript">
+/*
+http://datos.gob.es/es/catalogo/l01330241-cuadros-de-mando-electrico-del-alumbrado-publico
+http://opendata.gijon.es/descargar.php?id=163&tipo=JSON
+*/
+
+	//Concepci&#243;n Arenal
+	//Pedro Men&#233;ndez Concepci&#243;n
+	function reemplazar(cadena){
+		
+		var nuevo = '';
+		
+		//var cadena = 'Pedro Men&#233;ndez Concepci&#243;n';
+		var inicio = cadena.indexOf('&');
+		var fin = cadena.indexOf(';') + 1;
+		
+		var caracter = cadena.substring(inicio,fin);
+		var vocal = '';
+		
+		switch (caracter) {
+			case '&#225;': vocal = 'á'; break;
+			case '&#233;': vocal = 'é'; break;
+			case '&#237;': vocal = 'í'; break;
+			case '&#243;': vocal = 'ó'; break;
+			case '&#250;': vocal = 'ú'; break;
+			case '&#193;': vocal = 'Á'; break;
+			case '&#201;': vocal = 'É'; break;
+			case '&#205;': vocal = 'Í'; break;
+			case '&#211;': vocal = 'Ó'; break;
+			case '&#218;': vocal = 'Ú'; break; 
+			case '&#241;': vocal = 'ñ'; break;
+			default: vocal = 'Ñ';  
+		}
+		
+		nuevo = cadena.slice(0,inicio) + vocal + cadena.slice(fin);
+		
+		if(nuevo.indexOf('&') !== -1){
+			reemplazar(nuevo);
+		} else {
+			return nuevo;
+		}
+	}
+	
+	function pintarDatos(array){
+		
+		array.forEach(function(element,index,array){
+			
+			var calle = '', numero = '', potencia = '', longitud = '', latitud = '' ;
+			
+			calle = element.calle;
+			numero = element.numero;
+			potencia = element.potencia_w_;
+			longitud = element.longitud;
+			latitud = element.latitud;
+			
+			if(calle.indexOf('&') !== -1){
+				calle = reemplazar(calle);
+			}
+			
+			if(numero === ''){
+				numero = 'No definido';	
+			}
+			
+			console.info(index + ' | ' + calle + ' | ' + numero + ' | ' + potencia + ' | ' + longitud + ' | ' + latitud);
+			/*
+			if(array[index].calle.indexOf('&')!=-1){
+				reemplazar(array[index].calle);
+			}
+			*/
+			
+		});
+		
+	}
+
+	function peticionAjax(url) {
+        var xmlHttp = new XMLHttpRequest();
+
+        xmlHttp.onreadystatechange = function() {
+
+            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                var datos = JSON.parse(xmlHttp.responseText);
+				
+				pintarDatos(datos.cuadromandos.cuadromando);
+				//pintarTiempo(tiempo);
+				//console.info(datos.cuadromandos.cuadromando);
+				//console.info(tiempo.id);
+				
+            } else if (xmlHttp.readyState === 4 && xmlHttp.status === 404) {
+                console.error("ERROR! 404");
+                console.info(JSON.parse(xmlHttp.responseText));
+            }
+        };
+        xmlHttp.open("GET", url, true);
+        xmlHttp.send();
+    }
+
+	peticionAjax('http://opendata.gijon.es/descargar.php?id=163&tipo=JSON');
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ejercicio 02</title>
+
+</head>
+
+<body>
+
+<main role="main">
+
+	<div class="contenedor">
+    	
+    </div>
+
+</main>
+
+
+
+<script type="text/javascript">
+	
+	/*
+	2 - Sacar en el html el tiempo meteorológico de Madrid, Barcelona y Valencia. Nota: http://openweathermap.org te será de gran ayuda, busca la solución al error 401
+	*/
+	var ciudades = ['Madrid', 'Barcelona', 'Valencia'];
+	var keyID = 'd4b4284682c6e9d52b7991716b8e007c';
+	
+	function pintarTiempo(objeto){	
+		var sHtml = '';
+		var temp = Math.floor(objeto.main.temp-273);
+		sHtml += '<h2>Weather in '+objeto.name+'</h2>';
+		sHtml += '<p>'+temp+'Cº</p>';
+		
+		document.querySelector('.contenedor').innerHTML += sHtml;
+	}
+	
+	function peticionAjax(url) {
+        var xmlHttp = new XMLHttpRequest();
+
+        xmlHttp.onreadystatechange = function() {
+
+            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                var tiempo = JSON.parse(xmlHttp.responseText);
+				
+				pintarTiempo(tiempo);
+				//console.info(tiempo.name);
+				//console.info(tiempo.id);
+				
+            } else if (xmlHttp.readyState === 4 && xmlHttp.status === 404) {
+                console.error("ERROR! 404");
+                console.info(JSON.parse(xmlHttp.responseText));
+            }
+        };
+        xmlHttp.open("GET", url, true);
+        xmlHttp.send();
+    }
+	
+	
+	ciudades.forEach(function(element,index,array){
+		var url = 'http://api.openweathermap.org/data/2.5/weather?q='+array[index]+'&APPID='+keyID;
+		peticionAjax(url);
+	});
+
+    //peticionAjax("http://api.openweathermap.org/data/2.5/weather?q=London&APPID=d4b4284682c6e9d52b7991716b8e007c");
+
+</script>
+
+
+</body>
+
+</html>
