@@ -574,7 +574,6 @@ Objetivos:
 - [Firebase 3.x](http://codepen.io/ulisesgascon/pen/11130424da2c833b7b8cc86a6c5034b8)
 
 
-
 ### Express
 
 ![Express_logo](https://i.cloudup.com/zfY6lL7eFa-3000x3000.png)
@@ -1560,7 +1559,4 @@ app.use('production', function(error, req, res, next) {
     - Enriquece los datos facilitados por el usuario con la [API de OMBD](http://omdbapi.com/)
     - Guardate una copia de las portadas de las peliculas y sirvelas en la carpeta de los archivos estáticos para evitar el error 403 de IMBD
 
-- **Solución**
-```javascript
-  // Tu solución
-```
+- **[Solución](https://github.com/UlisesGascon/Simple-API-REST-with-Firebase-and-IMBD/releases/tag/v1.0.0)**
